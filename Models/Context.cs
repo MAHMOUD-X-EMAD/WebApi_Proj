@@ -22,7 +22,7 @@ namespace WebApi_Angular_Proj.Models
         public DbSet<Requests> Requests { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog = MVCLab ;Integrated Security = True; Encrypt = False");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog = WebApiProject ;Integrated Security = True; Encrypt = False");
         }
 
     }

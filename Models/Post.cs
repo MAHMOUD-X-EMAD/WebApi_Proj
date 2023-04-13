@@ -13,6 +13,7 @@ namespace WebApplication1.Models
         public DateTime Created { get; set; }
         public virtual User? User { get; set; }
         public virtual List<PostFiles> Files { get; set; }
+        public virtual List<Comment> Comments { get; set; }
 
     }
 }

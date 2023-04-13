@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using WebApi_Angular_Proj.Models;
+using WebApi_Angular_Proj.Repository;
 
 namespace WebApi_Angular_Proj
 {
@@ -53,6 +54,8 @@ namespace WebApi_Angular_Proj
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             /*builder.Services.AddSwaggerGen();*/
