@@ -12,6 +12,7 @@ namespace WebApi_Angular_Proj.Models
 
         [ForeignKey("FromUser")]
         public int FromId { get; set; }
+
         [ForeignKey("ToUser")]
         public int ToId { get; set; }
 
