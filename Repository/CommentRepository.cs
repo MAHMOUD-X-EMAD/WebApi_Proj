@@ -29,12 +29,14 @@ namespace WebApi_Angular_Proj.Repository
             return Context.Comments.Where(c => c.PostId == PostId).ToList();
         }
 
-        public void UpdateComment(int CommentId, Comment NewComment)
+        public void UpdateComment(int CommentId, string CommentContent)
         {
             Comment Comment = Context.Comments.FirstOrDefault(c => c.Id == CommentId);
-            Comment.Content = NewComment.Content;
+            Comment.Content = CommentContent;
             Comment.Updated = true;
             Context.SaveChanges();
         }
+
+
     }
 }

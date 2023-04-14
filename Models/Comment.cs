@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using WebApi_Angular_Proj.Models;
 
 namespace WebApplication1.Models
@@ -17,8 +18,10 @@ namespace WebApplication1.Models
         public DateTime date { get; set; }
         public int Likes { get; set; }
 
-        public bool? Updated { get; set; }
-        public virtual Post post { get; set; }
-        public virtual User User { get; set; }
+        public bool? Updated { get; set; } = false;
+        /*[JsonIgnore]
+        public virtual Post? post { get; set; }
+        [JsonIgnore]
+        public virtual User User { get; set; }*/
     }
 }

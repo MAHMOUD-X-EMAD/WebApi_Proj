@@ -22,7 +22,7 @@ namespace WebApi_Angular_Proj.Controllers
             return Ok(PostRepository.GetAllPosts());
         }
 
-        [HttpGet("{id:alpha}")]
+        [HttpGet("{Id}")]
         public IActionResult GetPostByUserId(string Id)
         {
             return Ok(PostRepository.GetPostsByUser(Id));
@@ -30,10 +30,10 @@ namespace WebApi_Angular_Proj.Controllers
 
 
         [HttpGet("{Postid:int}")]
-        public IActionResult GetPostById(int Id)
+        public IActionResult GetPostById(int Postid)
         {
 
-            return Ok(PostRepository.GetByPostId(Id));
+            return Ok(PostRepository.GetByPostId(Postid));
         }
 
 
