@@ -1,4 +1,6 @@
-﻿using WebApi_Angular_Proj.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApi_Angular_Proj.DTO;
+using WebApi_Angular_Proj.Models;
 using WebApplication1.Models;
 
 namespace WebApi_Angular_Proj.Repository
@@ -11,8 +13,15 @@ namespace WebApi_Angular_Proj.Repository
             Context = _context;
         }
 
-        public void AddComment(Comment Comment)
+        public void AddComment(CommentDTO CommentDTO)
         {
+            Comment Comment = new Comment();
+            Comment.date = DateTime.Now;
+            Comment.PostId = CommentDTO.PostId;
+            Comment.Content = CommentDTO.CommentContent;
+            Comment.UserId = CommentDTO.UserId;
+            Comment.Updated = false;
+
             Context.Comments.Add(Comment);
             Context.SaveChanges();
         }
@@ -26,7 +35,7 @@ namespace WebApi_Angular_Proj.Repository
 
         public List<Comment> GetComments(int PostId)
         {
-            return Context.Comments.Where(c => c.PostId == PostId).ToList();
+            return Context.Comments.Include(u=>u.User).Where(c => c.PostId == PostId).ToList();
         }
 
         public void UpdateComment(int CommentId, string CommentContent)

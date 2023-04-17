@@ -19,9 +19,9 @@ namespace WebApplication1.Models
         public int Likes { get; set; }
 
         public bool? Updated { get; set; } = false;
-        /*[JsonIgnore]
-        public virtual Post? post { get; set; }
         [JsonIgnore]
-        public virtual User User { get; set; }*/
+        public virtual Post? post { get; set; }
+
+        public virtual User? User { get; set; }
     }
 }

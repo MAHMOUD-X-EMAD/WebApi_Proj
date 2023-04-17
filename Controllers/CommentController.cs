@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
+using WebApi_Angular_Proj.DTO;
 using WebApi_Angular_Proj.Repository;
 using WebApplication1.Models;
 
@@ -7,6 +9,7 @@ namespace WebApi_Angular_Proj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors(origins: "https://localhost:4200/", headers: "*", methods: "*")]
     public class CommentController : ControllerBase
     {
         ICommentRepository CommentRepository;
@@ -15,7 +18,7 @@ namespace WebApi_Angular_Proj.Controllers
             CommentRepository = _commentRepository;
         }
         [HttpPost]
-        public  IActionResult AddComment(Comment Comment)
+        public  IActionResult AddComment(CommentDTO Comment)
         {
             CommentRepository.AddComment(Comment);
             return Ok("Does");

@@ -1,4 +1,5 @@
-﻿using WebApplication1.Models;
+﻿using WebApi_Angular_Proj.DTO;
+using WebApplication1.Models;
 
 namespace WebApi_Angular_Proj.Repository
 {
@@ -7,7 +8,7 @@ namespace WebApi_Angular_Proj.Repository
 
         public List<Post> GetPostsByUser(string Id);
         public List<Post> GetAllPosts();
-        public void CreatePost(Post Post);
+        public void CreatePost(CreatePostDTO PostDTO);
         public Post GetByPostId(int Id);
 
     }

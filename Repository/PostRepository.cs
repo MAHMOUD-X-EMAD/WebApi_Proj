@@ -1,4 +1,6 @@
-﻿using WebApi_Angular_Proj.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApi_Angular_Proj.DTO;
+using WebApi_Angular_Proj.Models;
 using WebApplication1.Models;
 
 namespace WebApi_Angular_Proj.Repository
@@ -10,15 +12,20 @@ namespace WebApi_Angular_Proj.Repository
         {
             Context = _context;
         }
-        public void CreatePost(Post Post)
+        public void CreatePost(CreatePostDTO PostDTO)
         {
-            Context.Add(Post);
+            Post Post = new Post();
+            Post.UserId = PostDTO.UserId;
+            Post.PostContent = PostDTO.PostContent;
+            Post.Like = 0;
+            Post.Created = DateTime.Now;
+            Context.Posts.Add(Post);
             Context.SaveChanges();
         }
 
         public List<Post> GetAllPosts()
         {
-            return Context.Posts.ToList();
+            return Context.Posts.Include(p => p.User).ToList();
         }
 
         public Post GetByPostId(int Id)
