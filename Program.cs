@@ -1,4 +1,5 @@
 
+using Final.Hubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ namespace WebApi_Angular_Proj
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddSignalR();
 
             builder.Services.AddCors(options => {
                 options.AddPolicy("My", builder =>
@@ -101,9 +104,11 @@ namespace WebApi_Angular_Proj
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseCors("My");
             app.UseAuthentication();
             app.UseAuthorization();
+            app.MapHub<CommentHub>("/Commenthub");
 
 
             app.MapControllers();
