@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Web.Http.Cors;
 using WebApi_Angular_Proj.DTO;
@@ -137,7 +138,7 @@ namespace WebApi_Angular_Proj.Controllers
         [HttpGet("MyPosts")]
         public IActionResult GetPosts(string id)
         {
-            List<Post> posts = Context.Posts.Where(p => p.UserId == id).ToList();
+            List<Post> posts = Context.Posts.Include(p=> p.User).Where(p => p.UserId == id).ToList();
             return Ok(posts);
         }
 

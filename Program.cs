@@ -1,10 +1,12 @@
 
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using WebApi_Angular_Proj.Hubs;
 using WebApi_Angular_Proj.Models;
 using WebApi_Angular_Proj.Repository;
 
@@ -110,7 +112,8 @@ namespace WebApi_Angular_Proj
             app.UseCors("My");
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.MapHub<CommentHub>("/Commenthub");
+            app.MapHub<PostHub>("/Commenthub");
 
             app.MapControllers();
 

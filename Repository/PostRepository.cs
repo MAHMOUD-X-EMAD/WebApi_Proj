@@ -14,6 +14,7 @@ namespace WebApi_Angular_Proj.Repository
         }
         public void CreatePost(CreatePostDTO PostDTO)
         {
+            
             Post Post = new Post();
             Post.UserId = PostDTO.UserId;
             Post.PostContent = PostDTO.PostContent;
@@ -54,7 +55,7 @@ namespace WebApi_Angular_Proj.Repository
 
         public List<Post> GetPostsByUser(string Id)
         {
-            return Context.Posts.Where(p => p.UserId == Id).ToList();
+            return Context.Posts.Include(p => p.User).Where(p => p.UserId == Id).ToList();
         }
     
     }
