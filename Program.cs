@@ -17,7 +17,7 @@ namespace WebApi_Angular_Proj
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddSignalR();
             builder.Services.AddCors(options => {
                 options.AddPolicy("My", builder =>
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
@@ -107,13 +107,14 @@ namespace WebApi_Angular_Proj
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            
 
             app.UseHttpsRedirection();
             app.UseCors("My");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapHub<CommentHub>("/Commenthub");
-            app.MapHub<PostHub>("/Commenthub");
+            app.MapHub<PostHub>("/Posthub");
 
             app.MapControllers();
 

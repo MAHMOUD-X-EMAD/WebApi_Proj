@@ -1,12 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Identity;
-
-using Microsoft.EntityFrameworkCore;
-
 using System.Text;
 using WebApi_Angular_Proj.Models;
-
 namespace WebApi_Angular_Proj.Hubs
 {
     public class CommentHub : Hub
