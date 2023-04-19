@@ -142,6 +142,13 @@ namespace WebApi_Angular_Proj.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("User/{id}")]
+        public IActionResult GetUser(string id)
+        {
+            List<User> User = Context.Users.Include(p => p.ApplicationUser).Where(p => p.Id == id).ToList();
+            return Ok(User);
+        }
+
 
         [HttpGet("RequetsSent")]
         public IActionResult RequestsSent(string id)
