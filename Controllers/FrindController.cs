@@ -23,17 +23,26 @@ namespace WebApi_Angular_Proj.Controllers
             FrindRequest.SendRequest(request);
             return Ok();
         }
+
         [HttpPost("Accept")]
-        public IActionResult AcceptRequest(string FromId, string ToId)
+        public IActionResult AcceptRequest(RequestDTO requestDTO)
         {
-            FrindRequest.AcceptRequest(FromId, ToId);
+            FrindRequest.AcceptRequest(requestDTO.FromId, requestDTO.ToId);
             return Ok();
         }
+
         [HttpPost("Reject")]
-        public IActionResult RejectRequest(string FromId, string ToId)
+        public IActionResult RejectRequest(RequestDTO requestDTO)
         {
-            FrindRequest.RejectRequest(FromId, ToId);
+            FrindRequest.RejectRequest(requestDTO.FromId, requestDTO.ToId);
             return Ok();
         }
+
+        [HttpGet("ToId")]
+        public IActionResult GetRequest(string ToId)
+        {
+            return Ok(FrindRequest.GetAllRequests(ToId));
+        }
+
     }
 }

@@ -25,8 +25,6 @@ namespace WebApi_Angular_Proj.Repository
             Context.Requests.Add(Request);
             Context.SaveChanges();
         }
-
-
         public void AcceptRequest(string FromId, string ToId)
         {
             Requests Request = Context.Requests.FirstOrDefault(r => r.FromId == FromId && r.ToId == ToId);
@@ -38,6 +36,11 @@ namespace WebApi_Angular_Proj.Repository
             Requests Request = Context.Requests.FirstOrDefault(r => r.FromId == FromId && r.ToId == ToId);
             Request.status = "Rejected";
             Context.SaveChanges();
+        }
+
+        public List<User> GetAllRequests(string id)
+        {
+            return Context.Requests.Where(e => e.ToId == id && e.status == "Pendding").Select(u => u.FromUser).ToList();
         }
     }
 }

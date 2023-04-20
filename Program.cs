@@ -1,5 +1,3 @@
-
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -115,6 +113,7 @@ namespace WebApi_Angular_Proj
             app.UseAuthorization();
             app.MapHub<CommentHub>("/Commenthub");
             app.MapHub<PostHub>("/Posthub");
+            app.MapHub<LikeNotifyHub>("/LikeNotifyHub");
 
             app.MapControllers();
 
